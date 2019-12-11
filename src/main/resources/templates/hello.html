@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Page Title</title>
+		<meta name="token" th:content="${atlassianConnectToken}"/>
+		<script th:src="@{${atlassianConnectAllJsUrl}}" type="text/javascript"></script>
+		<script th:src="@{${jsUrl}}" type="text/javascript"></script>
+		<script th:inline="javascript">
+		function func1(){
+			var txt = [[${test}]];
+			var obj = JSON.parse(txt);
+			//var obj = createArray(obj1);
+			var tbl=$("<table/>").attr("id","mytable");
+			$("#demo1").append(tbl);
+			$("#mytable").append("<tr><td>Project</td><td>ID</td><td>Key</td><td>Style</td></tr>")
+			for(var i=0;i<obj.length;i++)
+			{
+				var tr="<tr>";
+				var td1="<td>"+obj[i]["name"]+"</td>";
+				var td2="<td>"+obj[i]["id"]+"</td>";
+				var td3="<td>"+obj[i]["key"]+"</td>";
+				var td4="<td>"+obj[i]["style"]+"</td></tr>";
+				$("#mytable").append(tr+td1+td2+td3+td4);
+			}
+			//document.getElementById("demo1").innerHTML = syntaxHighlight(JSON.stringify(obj1, null, 2));
+		}
+		</script>
+	</head>
+	<body>
+		<hr>
+		<h1>Details For Project</h1>
+		<div id="demo1"></div>
+		<script>func1();</script>
+		<hr>
+	</body>
+</html>

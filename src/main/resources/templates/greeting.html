@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Page Title</title>
+		<meta name="token" th:content="${atlassianConnectToken}"/>
+		<style>
+			pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+			.string { color: green; }
+			.number { color: darkorange; }
+			.boolean { color: blue; }
+			.null { color: magenta; }
+			.key { color: red; }
+			table {
+			  font-family: arial, sans-serif;
+			  border-collapse: collapse;
+			  width: 100%;
+			}
+
+			td, th {
+			  border: 1px solid #dddddd;
+			  text-align: left;
+			  padding: 8px;
+			}
+
+			tr:nth-child(even) {
+			  background-color: #dddddd;
+			}
+		</style>
+		<script th:src="@{${atlassianConnectAllJsUrl}}" type="text/javascript"></script>
+		<script th:src="@{${jsUrl}}" type="text/javascript"></script>
+		<script th:inline="javascript">
+		function func2(){
+			var txt = [[${test}]];
+			var obj = JSON.parse(txt).values;
+			var tbl=$("<table/>").attr("id","mytable1");
+			$("#demo2").append(tbl);
+			$("#mytable1").append("<tr><td>Board</td><td>ID</td><td>Project</td><td>Type</td></tr>");
+			for(var i=0;i<obj.length;i++)
+			{
+				var tr="<tr>";
+				var td1="<td>"+obj[i]["name"]+"</td>";
+				var td2="<td>"+obj[i]["id"]+"</td>";
+				var td3="<td>"+obj[i]["location"]["name"]+"</td>";
+				var td4="<td>"+obj[i]["type"]+"</td></tr>";
+				$("#mytable1").append(tr+td1+td2+td3+td4);
+			}
+			//document.getElementById("demo2").innerHTML = syntaxHighlight(JSON.stringify(obj, null, 2));
+		}
+		</script>
+	</head>
+	<body>
+		<hr>
+		<h1>Details Of Board</h1>
+		<div id="demo2"></div>
+		<script>func2();</script>
+		<hr>
+	</body>
+</html>

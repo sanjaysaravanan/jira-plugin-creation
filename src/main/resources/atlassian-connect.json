@@ -1,0 +1,38 @@
+{
+  "key": "my-addon001",
+  "baseUrl": "https://05f4530d.ngrok.io",
+  "name": "Atlassian Connect Spring Boot Starter",
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/installed",
+    "uninstalled": "/uninstalled"
+  },
+  "scopes": [
+        "READ", "WRITE"
+   ],
+  "apiMigrations": {
+    "gdpr": true
+  },
+  "modules": {
+	 "generalPages": [
+		{
+	         "url": "/projects",
+	         "key": "Projects",
+	         "location": "system.top.navigation.bar",	
+	         "name": {
+	             "value": "Projects"
+	         }
+	    },
+		{ 
+	         "url": "/boards",
+	         "key": "Boards",
+	         "location": "system.top.navigation.bar",	
+	         "name": {
+	             "value": "Boards"
+	         }
+	    }
+	 ]
+	}
+}
